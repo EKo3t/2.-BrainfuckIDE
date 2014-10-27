@@ -1,0 +1,4 @@
+F:\Projects\C#\Itransition\2. Brainfuck IDE\BrainfuckIDE\BrainfuckCompiler\bin\Debug\BrainfuckCompiler.dll
+F:\Projects\C#\Itransition\2. Brainfuck IDE\BrainfuckIDE\BrainfuckCompiler\bin\Debug\BrainfuckCompiler.pdb
+F:\Projects\C#\Itransition\2. Brainfuck IDE\BrainfuckIDE\BrainfuckCompiler\obj\Debug\BrainfuckCompiler.dll
+F:\Projects\C#\Itransition\2. Brainfuck IDE\BrainfuckIDE\BrainfuckCompiler\obj\Debug\BrainfuckCompiler.pdb
