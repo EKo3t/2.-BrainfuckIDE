@@ -47,10 +47,10 @@ namespace BrainfuckCompiler
             AssemblyBuilder ASM = AppDomain.CurrentDomain.DefineDynamicAssembly(
                 aName, 
                 AssemblyBuilderAccess.RunAndSave); //Создаем сборку
-            ASM.Save(aName.Name);
-            ModuleBuilder MDB = ASM.DefineDynamicModule(aName.Name, aName.Name + ".dll");
+
+            ModuleBuilder MDB = ASM.DefineDynamicModule(aName.Name);
             TypeBuilder TPB = MDB.DefineType("DynamicType", TypeAttributes.Class); //Создаем класс в модуле
-            TPB.CreateType();
+
             FieldBuilder FDB_1 = TPB.DefineField("Memory", typeof(byte[]), FieldAttributes.Private); // private byte[] Memory; //Память для операций.
             FieldBuilder FDB_2 = TPB.DefineField("Point", typeof(int), FieldAttributes.Private); //private int Point; //Указатель в памяти.
             MethodBuilder MTB = TPB.DefineMethod("Main", MethodAttributes.Static, CallingConventions.Any); //static void Main() //Main Procedure
@@ -146,7 +146,7 @@ namespace BrainfuckCompiler
             }
             MTB_IL.Emit(OpCodes.Ret); //Заканчиваем
             TPB.CreateType(); //Завершаем класс
-            ASM.Save("testfile"); //Сохраняем сборку
+            ASM.Save("testfile.exe"); //Сохраняем сборку
 
         }
 

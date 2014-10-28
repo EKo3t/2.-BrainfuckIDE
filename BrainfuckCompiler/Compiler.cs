@@ -10,16 +10,17 @@ namespace BrainfuckCompiler
 {
     public static class Compiler
     {
-        public static void StartCompiler()
+        public static bool StartCompiler()
         {
             string path = @"F:/TestFile.txt";
             string sourceCode = CompilerUtils.GetSourceCode(path);
             if (!CompilerUtils.CheckSourceBasics(sourceCode))
             {
                 Console.WriteLine("Incorrect Source Code");
-                return;
+                return false;
             }
-            CompilerUtils.BuildAssembly(sourceCode);
+            //CompilerUtils.BuildAssembly(sourceCode);
+            return true;
         }
 
     }
