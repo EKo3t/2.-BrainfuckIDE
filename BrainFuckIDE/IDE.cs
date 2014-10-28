@@ -18,14 +18,17 @@ namespace BrainFuckIDE
         public IDEForm()
         {
             InitializeComponent();
+            CheckNullTabs();
         }
 
         private void RunProgram_Click(object sender, EventArgs e)
         {
             output.Clear();
-            
             Compiler.StartCompiler();
-            string result = Interpreter.RunInterpreter(@"F:/TestFile.txt");
+            RichTextBox richTextBox = new RichTextBox();
+            richTextBox = (RichTextBox)textEditor.SelectedTab.Controls[0];
+            string sourceCode = richTextBox.Text;
+            string result = Interpreter.RunInterpreter(sourceCode);
             output.Text = result;
         }
 
@@ -33,7 +36,6 @@ namespace BrainFuckIDE
         {
             Compiler.StartCompiler();
         }
-
 
         private TabPage CreateTab(string name = "", RichTextBox richTextBoxParam = null)
         {
@@ -68,15 +70,28 @@ namespace BrainFuckIDE
             textEditor.SelectedTab = tabPage;
         }
 
-        private void textEditor_TabIndexChanged(object sender, EventArgs e)
+        private void CheckNullTabs()
         {
             if (textEditor.TabCount == 0)
             {
                 TabPage tabPage = CreateTab("Untitled");
-                AddTabPage(tabPage);    
-            }
+                AddTabPage(tabPage);
+            }            
         }
 
+        private void textEditor_TabIndexChanged(object sender, EventArgs e)
+        {
+            CheckNullTabs();
+        }
+
+        private RichTextBox GetRichTextBoxFromSelectedTab()
+        {
+            RichTextBox richTextBox = new RichTextBox();
+            richTextBox = (RichTextBox)textEditor.SelectedTab.Controls[0];
+            return richTextBox;
+        }
+
+        #region toolbarmethods
         void Open()
         {
             if (openFile.ShowDialog() == DialogResult.OK)
@@ -96,8 +111,7 @@ namespace BrainFuckIDE
             {
                 try
                 {
-                    RichTextBox richTextBox = new RichTextBox();
-                    richTextBox = (RichTextBox)textEditor.SelectedTab.Controls[0];
+                    RichTextBox richTextBox = GetRichTextBoxFromSelectedTab();
                     richTextBox.SaveFile(saveFile.FileName, RichTextBoxStreamType.PlainText);
                 }
                 catch (Exception ex)
@@ -107,27 +121,67 @@ namespace BrainFuckIDE
             }
         }
 
-        #region ToolBarClicks
-        private void addNewFile_click(object sender, EventArgs e)
+        void Undo()
         {
-            TabPage tabPage = CreateTab();
-            AddTabPage(tabPage);
+            GetRichTextBoxFromSelectedTab().Undo();
         }
 
-        private void openFileButton_Click(object sender, EventArgs e)
+        void Redo()
         {
-            Open();
+            GetRichTextBoxFromSelectedTab().Redo();
         }
 
-        private void saveFileButton_Click(object sender, EventArgs e)
+        void Cut()
         {
-            Save();
-        }        
+            GetRichTextBoxFromSelectedTab().Cut();
+        }
+
+        void Copy()
+        {
+            GetRichTextBoxFromSelectedTab().Copy();
+        }
+
+        void Paste()
+        {
+            GetRichTextBoxFromSelectedTab().Paste();
+        }
 
         #endregion
 
+        #region ToolBarClicks
+            private void addNewFile_click(object sender, EventArgs e)
+            {
+                
+                TabPage tabPage = CreateTab();
+                AddTabPage(tabPage);
+            }
+
+            private void openFileButton_Click(object sender, EventArgs e)
+            {
+                Open();
+            }
+
+            private void saveFileButton_Click(object sender, EventArgs e)
+            {
+                Save();
+            }
 
 
+            private void cutButton_Click(object sender, EventArgs e)
+            {
+                Cut();
+            }
+
+            private void copyButton_Click(object sender, EventArgs e)
+            {
+                Copy();
+            }
+
+            private void PasteButton_Click(object sender, EventArgs e)
+            {
+                Paste();
+            }         
+        #endregion
 
     }
 }

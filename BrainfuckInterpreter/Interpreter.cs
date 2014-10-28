@@ -135,13 +135,10 @@ namespace BrainfuckInterpreter
             return result.ToString();
         }
  
-        public static string RunInterpreter(string path)
+        public static string RunInterpreter(string sourceCode)
         {
             var bf = new Interpreter();
-            if (File.Exists(path))
-                return bf.Interpret(File.ReadAllText(path));
-            else
-                return "File Open Error: ";
+            return bf.Interpret(sourceCode);
         }
     }
 }

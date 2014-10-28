@@ -37,9 +37,9 @@
             this.openFileButton = new System.Windows.Forms.ToolStripButton();
             this.saveFileButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.вырезатьToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.копироватьToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.вставкаToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.cutButton = new System.Windows.Forms.ToolStripButton();
+            this.copyButton = new System.Windows.Forms.ToolStripButton();
+            this.PasteButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.textEditor = new System.Windows.Forms.TabControl();
             this.openFile = new System.Windows.Forms.OpenFileDialog();
@@ -69,7 +69,7 @@
             // 
             // output
             // 
-            this.output.Location = new System.Drawing.Point(271, 194);
+            this.output.Location = new System.Drawing.Point(204, 194);
             this.output.Multiline = true;
             this.output.Name = "output";
             this.output.Size = new System.Drawing.Size(383, 57);
@@ -82,9 +82,9 @@
             this.openFileButton,
             this.saveFileButton,
             this.toolStripSeparator,
-            this.вырезатьToolStripButton,
-            this.копироватьToolStripButton,
-            this.вставкаToolStripButton,
+            this.cutButton,
+            this.copyButton,
+            this.PasteButton,
             this.toolStripSeparator1});
             this.tools.Location = new System.Drawing.Point(0, 0);
             this.tools.Name = "tools";
@@ -127,32 +127,35 @@
             this.toolStripSeparator.Name = "toolStripSeparator";
             this.toolStripSeparator.Size = new System.Drawing.Size(6, 25);
             // 
-            // вырезатьToolStripButton
+            // cutButton
             // 
-            this.вырезатьToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.вырезатьToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("вырезатьToolStripButton.Image")));
-            this.вырезатьToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.вырезатьToolStripButton.Name = "вырезатьToolStripButton";
-            this.вырезатьToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.вырезатьToolStripButton.Text = "В&ырезать";
+            this.cutButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.cutButton.Image = ((System.Drawing.Image)(resources.GetObject("cutButton.Image")));
+            this.cutButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.cutButton.Name = "cutButton";
+            this.cutButton.Size = new System.Drawing.Size(23, 22);
+            this.cutButton.Text = "&Cut";
+            this.cutButton.Click += new System.EventHandler(this.cutButton_Click);
             // 
-            // копироватьToolStripButton
+            // copyButton
             // 
-            this.копироватьToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.копироватьToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("копироватьToolStripButton.Image")));
-            this.копироватьToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.копироватьToolStripButton.Name = "копироватьToolStripButton";
-            this.копироватьToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.копироватьToolStripButton.Text = "&Копировать";
+            this.copyButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.copyButton.Image = ((System.Drawing.Image)(resources.GetObject("copyButton.Image")));
+            this.copyButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.copyButton.Name = "copyButton";
+            this.copyButton.Size = new System.Drawing.Size(23, 22);
+            this.copyButton.Text = "&Copy";
+            this.copyButton.Click += new System.EventHandler(this.copyButton_Click);
             // 
-            // вставкаToolStripButton
+            // PasteButton
             // 
-            this.вставкаToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.вставкаToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("вставкаToolStripButton.Image")));
-            this.вставкаToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.вставкаToolStripButton.Name = "вставкаToolStripButton";
-            this.вставкаToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.вставкаToolStripButton.Text = "Вст&авка";
+            this.PasteButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.PasteButton.Image = ((System.Drawing.Image)(resources.GetObject("PasteButton.Image")));
+            this.PasteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.PasteButton.Name = "PasteButton";
+            this.PasteButton.Size = new System.Drawing.Size(23, 22);
+            this.PasteButton.Text = "&Paste";
+            this.PasteButton.Click += new System.EventHandler(this.PasteButton_Click);
             // 
             // toolStripSeparator1
             // 
@@ -161,7 +164,7 @@
             // 
             // textEditor
             // 
-            this.textEditor.Location = new System.Drawing.Point(271, 35);
+            this.textEditor.Location = new System.Drawing.Point(204, 35);
             this.textEditor.MinimumSize = new System.Drawing.Size(383, 153);
             this.textEditor.Name = "textEditor";
             this.textEditor.SelectedIndex = 0;
@@ -209,9 +212,9 @@
         private System.Windows.Forms.ToolStripButton openFileButton;
         private System.Windows.Forms.ToolStripButton saveFileButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
-        private System.Windows.Forms.ToolStripButton вырезатьToolStripButton;
-        private System.Windows.Forms.ToolStripButton копироватьToolStripButton;
-        private System.Windows.Forms.ToolStripButton вставкаToolStripButton;
+        private System.Windows.Forms.ToolStripButton cutButton;
+        private System.Windows.Forms.ToolStripButton copyButton;
+        private System.Windows.Forms.ToolStripButton PasteButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.TabControl textEditor;
         private System.Windows.Forms.OpenFileDialog openFile;
