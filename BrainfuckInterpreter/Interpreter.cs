@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BrainFuckIDE;
 
 namespace BrainfuckInterpreter
 {
@@ -12,7 +13,7 @@ namespace BrainfuckInterpreter
     {
         private static string VER = "0.0.0.1";
         private static readonly int BUFSIZE = 65535;
-        private int[] buf = new int[BUFSIZE];
+        public int[] buf = new int[BUFSIZE];
         private int ptr { get; set; }
         private bool echo { get; set; }
  
@@ -113,6 +114,7 @@ namespace BrainfuckInterpreter
                         }
                     case ',':
                         {
+                            
                             // read a key
                             ConsoleKeyInfo key = Console.ReadKey(echo);
                             buf[ptr] = key.KeyChar;
@@ -123,7 +125,96 @@ namespace BrainfuckInterpreter
             }
             return result.ToString();
         }
- 
+
+        public result DebugProgram(result debugResult)
+        {
+            switch (debugResult.commands[debugResult.i])
+            {
+                case '>':
+                {
+                    debugResult.ptr++;
+                    if (debugResult.ptr >= BUFSIZE)
+                    {
+                        debugResult.ptr = 0;
+                    }
+                    break;
+                }
+                case '<':
+                {
+                    debugResult.ptr--;
+                    if (debugResult.ptr < 0)
+                    {
+                        debugResult.ptr = BUFSIZE - 1;
+                    }
+                    break;
+                }
+                case '.':
+                {
+                    debugResult.resultStr.Append((char)buf[debugResult.ptr]);
+                    break;
+                }
+                case '+':
+                {
+                    buf[debugResult.ptr]++;
+                    break;
+                }
+                case '-':
+                {
+                    buf[debugResult.ptr]--;
+                    break;
+                }
+                case '[':
+                {
+                    if (buf[debugResult.ptr] == 0)
+                    {
+                        int loop = 1;
+                        while (loop > 0)
+                        {
+                            debugResult.i++;
+                            char c = debugResult.commands[debugResult.i];
+                            if (c == '[')
+                            {
+                                loop++;
+                            }
+                            else if (c == ']')
+                            {
+                                loop--;
+                            }
+                        }
+                    }
+                    break;
+                }
+                case ']':
+                {
+                    int loop = 1;
+                    while (loop > 0)
+                    {
+                        debugResult.i--;
+                        char c = debugResult.commands[debugResult.i];
+                        if (c == '[')
+                        {
+                            loop--;
+                        }
+                        else if (c == ']')
+                        {
+                            loop++;
+                        }
+                    }
+                    debugResult.i--;
+                    break;
+                }
+                case ',':
+                {
+
+                    // read a key
+                    ConsoleKeyInfo key = Console.ReadKey(echo);
+                    buf[ptr] = key.KeyChar;
+                    break;
+                }
+            }
+            return debugResult;
+        }
+
         public static string RunInterpreter(string sourceCode)
         {
             var bf = new Interpreter();

@@ -44,12 +44,12 @@
             this.textEditor = new System.Windows.Forms.TabControl();
             this.openFile = new System.Windows.Forms.OpenFileDialog();
             this.saveFile = new System.Windows.Forms.SaveFileDialog();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.DebugCells = new System.Windows.Forms.DataGridView();
             this.Index = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.tools.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DebugCells)).BeginInit();
             this.SuspendLayout();
             // 
             // CompileProgram
@@ -188,16 +188,17 @@
             this.saveFile.FileName = "saveFile";
             this.saveFile.Filter = "Text Files|*.txt|Brainfuck Files|*.brf";
             // 
-            // dataGridView1
+            // DebugCells
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.DebugCells.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DebugCells.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Index,
             this.Value});
-            this.dataGridView1.Location = new System.Drawing.Point(401, 31);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(212, 213);
-            this.dataGridView1.TabIndex = 5;
+            this.DebugCells.Location = new System.Drawing.Point(401, 31);
+            this.DebugCells.Name = "DebugCells";
+            this.DebugCells.Size = new System.Drawing.Size(212, 213);
+            this.DebugCells.TabIndex = 5;
+            this.DebugCells.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DebugCells_CellEndEdit);
             // 
             // Index
             // 
@@ -228,7 +229,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(718, 296);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.DebugCells);
             this.Controls.Add(this.tools);
             this.Controls.Add(this.textEditor);
             this.Controls.Add(this.output);
@@ -241,7 +242,7 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.IDEForm_KeyDown);
             this.tools.ResumeLayout(false);
             this.tools.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DebugCells)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -264,7 +265,7 @@
         private System.Windows.Forms.TabControl textEditor;
         private System.Windows.Forms.OpenFileDialog openFile;
         private System.Windows.Forms.SaveFileDialog saveFile;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView DebugCells;
         private System.Windows.Forms.DataGridViewTextBoxColumn Index;
         private System.Windows.Forms.DataGridViewTextBoxColumn Value;
         private System.Windows.Forms.Label label1;

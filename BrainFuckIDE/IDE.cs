@@ -129,7 +129,10 @@ namespace BrainFuckIDE
                 try
                 {
                     RichTextBoxWPath richTextBox = GetRichTextBoxFromSelectedTab();
-                    richTextBox.SaveFile(saveFile.FileName, RichTextBoxStreamType.PlainText);
+                    string name;
+                    richTextBox.SaveFile(name = saveFile.FileName, RichTextBoxStreamType.PlainText);
+                    name = name.Substring(name.LastIndexOf("\\") + 1);
+                    textEditor.SelectedTab.Text = name;
                 }
                 catch (Exception ex)
                 {
@@ -232,43 +235,72 @@ namespace BrainFuckIDE
             BringToFront();
             Focus();
             KeyPreview = true;
-        }
-
-        public struct result
-        {
-            private StringBuilder resultStr;
-            private int ptr;
-            private bool ended;
-            private int i;
-        }
-
-        private void Debugger(bool beginNew)
-        {
-    /*        if (beginNew)
+            debugResult.ClearResult();
+            DebugCells.RowCount = 30000;
+            for (int ind = 0; ind < DebugCells.RowCount; ind++)
             {
-                IDEForm.result structResult = new IDEForm.result();
-                Interpreter bfInterpreter = new Interpreter();
-                RichTextBox richTextBox = GetRichTextBoxFromSelectedTab();
-                int i = 0;
-                int right = richTextBox.TextLength;
-                var result = new StringBuilder("");
+                DebugCells.Rows[ind].Cells[0].Value = (int)ind + 1;
             }
-            while (i < right)
+        }
+
+        public Interpreter bfInterpreter = new Interpreter();
+        public result debugResult = new result();
+
+        private void SelectCharacter(RichTextBoxWPath rtBoxWPath, int index)
+        {
+            rtBoxWPath.SelectionColor = Color.Red;
+            rtBoxWPath.SelectionStart = index;
+            rtBoxWPath.SelectionLength = 1;
+        }
+
+        private void DiselectCharacter(RichTextBoxWPath rtBoxWPath, int index)
+        {
+            rtBoxWPath.SelectionColor = Color.White;
+            rtBoxWPath.SelectionStart = index;
+            rtBoxWPath.SelectionLength = 1;
+        }
+
+        private void Debugger(bool ended)
+        {
+            if (!ended)
             {
-                bfInterpreter.DebugProgram(richTextBox.Text);
-                i++;
-            }*/
+                for (int ind = 0; ind < DebugCells.RowCount; ind++)
+                {
+                    DebugCells.Rows[ind].Cells[1].Value = bfInterpreter.buf[ind];
+                }
+                RichTextBoxWPath richTextBox = GetRichTextBoxFromSelectedTab();
+                if (debugResult.commands == "")
+                    debugResult.commands = richTextBox.Text;
+                int right = richTextBox.TextLength;
+                SelectCharacter(richTextBox, debugResult.i);
+                if (debugResult.i < right)
+                {
+                    debugResult = bfInterpreter.DebugProgram(debugResult);
+                    DiselectCharacter(richTextBox, debugResult.i);
+                    debugResult.i++;
+                }
+                if (debugResult.commands[debugResult.i] == '.')
+                {
+                    output.Clear();
+                    output.Text = debugResult.resultStr.ToString();
+                }
+            }
+            if (ended)
+            {
+                debugResult.ClearResult();
+                Interpreter bfInterpreter = new Interpreter();
+            }
         }
 
         private void IDEForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode.ToString() == "F10")
             {                
-                Debugger(true);
+                Debugger(false);
             }
             if (e.KeyCode.ToString() == "F11")
             {
-                Debugger(false);
+                Debugger(true);
             }
         }
 
@@ -279,5 +311,13 @@ namespace BrainFuckIDE
             string input = Microsoft.VisualBasic.Interaction.InputBox("Prompt", "Title", "Default", -1, -1);
             return input;
         }
+
+        private void DebugCells_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewCell cell = (DataGridViewCell) sender;
+
+        }
+
+
     }
 }
