@@ -76,7 +76,7 @@ namespace BrainFuckIDE
             }
             else
             {
-                tabPage.Text = name;
+                tabPage.Text = name.Substring(name.LastIndexOf("\\")+1);
                 tabPage.Tag = name;
             }
             richTextBox.Dock = DockStyle.Fill;
@@ -226,26 +226,6 @@ namespace BrainFuckIDE
             CheckNullTabs();
         }
 
-        private void IDEForm_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar >= 48 && e.KeyChar <= 57)
-            {
-                MessageBox.Show("Form.KeyPress: '" +
-                    e.KeyChar.ToString() + "' pressed.");
-
-                switch (e.KeyChar)
-                {
-                    case (char)49:
-                    case (char)52:
-                    case (char)55:
-                        MessageBox.Show("Form.KeyPress: '" +
-                            e.KeyChar.ToString() + "' consumed.");
-                        e.Handled = true;
-                        break;
-                }
-            }
-        }
-
         private void IDEForm_Load(object sender, EventArgs e)
         {
             CheckNullTabs();
@@ -288,9 +268,16 @@ namespace BrainFuckIDE
             }
             if (e.KeyCode.ToString() == "F11")
             {
-                
+                Debugger(false);
             }
         }
 
+        public delegate string InputText();
+
+        public string ReadFromWindow()
+        {
+            string input = Microsoft.VisualBasic.Interaction.InputBox("Prompt", "Title", "Default", -1, -1);
+            return input;
+        }
     }
 }

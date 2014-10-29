@@ -19,9 +19,10 @@ namespace BrainfuckCompiler
                 return false;
             }
             string name = path.Substring( path.LastIndexOf('\\') + 1);
+            name = name.Substring(0,name.LastIndexOf('.')+1);
+            name = name + "exe";
             CompilerUtils.BuildAssembly(sourceCode, name);
             return true;
         }
-
     }
 }

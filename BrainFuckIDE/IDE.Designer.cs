@@ -176,7 +176,6 @@
             this.textEditor.Size = new System.Drawing.Size(383, 153);
             this.textEditor.TabIndex = 3;
             this.textEditor.SelectedIndexChanged += new System.EventHandler(this.textEditor_SelectedIndexChanged);
-            this.textEditor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IDEForm_KeyPress);
             this.textEditor.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textEditor_MouseClick);
             // 
             // openFile
@@ -240,7 +239,6 @@
             this.Text = "BrainfuckIDE";
             this.Load += new System.EventHandler(this.IDEForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.IDEForm_KeyDown);
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IDEForm_KeyPress);
             this.tools.ResumeLayout(false);
             this.tools.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
