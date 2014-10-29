@@ -107,101 +107,6 @@ namespace BrainFuckIDE
             return richTextBox;
         }
 
-        #region toolbarmethods
-        void Open()
-        {
-            if (openFile.ShowDialog() == DialogResult.OK)
-            {
-                RichTextBoxWPath richTextBox = new RichTextBoxWPath();
-                string name;
-                richTextBox.LoadFile(name = openFile.FileName, RichTextBoxStreamType.PlainText);
-                TabPage tabPage = CreateTab(name, richTextBox);
-                tabPage.Controls.Add(richTextBox);
-                AddTabPage(tabPage);
-                richTextBox.Path = name;
-            }
-        }
-
-        private void Save()
-        {
-            if (saveFile.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    RichTextBoxWPath richTextBox = GetRichTextBoxFromSelectedTab();
-                    string name;
-                    richTextBox.SaveFile(name = saveFile.FileName, RichTextBoxStreamType.PlainText);
-                    name = name.Substring(name.LastIndexOf("\\") + 1);
-                    textEditor.SelectedTab.Text = name;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-        }
-
-        void Undo()
-        {
-            GetRichTextBoxFromSelectedTab().Undo();
-        }
-
-        void Redo()
-        {
-            GetRichTextBoxFromSelectedTab().Redo();
-        }
-
-        void Cut()
-        {
-            GetRichTextBoxFromSelectedTab().Cut();
-        }
-
-        void Copy()
-        {
-            GetRichTextBoxFromSelectedTab().Copy();
-        }
-
-        void Paste()
-        {
-            GetRichTextBoxFromSelectedTab().Paste();
-        }
-
-        #endregion
-
-        #region ToolBarClicks
-            private void addNewFile_click(object sender, EventArgs e)
-            {
-                
-                TabPage tabPage = CreateTab();
-                AddTabPage(tabPage);
-            }
-
-            private void openFileButton_Click(object sender, EventArgs e)
-            {
-                Open();
-            }
-
-            private void saveFileButton_Click(object sender, EventArgs e)
-            {
-                Save();
-            }
-
-            private void cutButton_Click(object sender, EventArgs e)
-            {
-                Cut();
-            }
-
-            private void copyButton_Click(object sender, EventArgs e)
-            {
-                Copy();
-            }
-
-            private void PasteButton_Click(object sender, EventArgs e)
-            {
-                Paste();
-            }         
-        #endregion
-
         private void textEditor_MouseClick(object sender, MouseEventArgs e)
         {
             try
@@ -246,16 +151,9 @@ namespace BrainFuckIDE
         public Interpreter bfInterpreter = new Interpreter();
         public result debugResult = new result();
 
-        private void SelectCharacter(RichTextBoxWPath rtBoxWPath, int index)
+        private void SelectCharacter(RichTextBoxWPath rtBoxWPath, int index, Color color)
         {
-            rtBoxWPath.SelectionColor = Color.Red;
-            rtBoxWPath.SelectionStart = index;
-            rtBoxWPath.SelectionLength = 1;
-        }
-
-        private void DiselectCharacter(RichTextBoxWPath rtBoxWPath, int index)
-        {
-            rtBoxWPath.SelectionColor = Color.White;
+            rtBoxWPath.SelectionColor = color;
             rtBoxWPath.SelectionStart = index;
             rtBoxWPath.SelectionLength = 1;
         }
@@ -272,11 +170,13 @@ namespace BrainFuckIDE
                 if (debugResult.commands == "")
                     debugResult.commands = richTextBox.Text;
                 int right = richTextBox.TextLength;
-                SelectCharacter(richTextBox, debugResult.i);
+                if (debugResult.i - 1 >= 0)
+                    SelectCharacter(richTextBox, debugResult.i-1, Color.Black);
+
+                SelectCharacter(richTextBox, debugResult.i, Color.Red);
                 if (debugResult.i < right)
                 {
                     debugResult = bfInterpreter.DebugProgram(debugResult);
-                    DiselectCharacter(richTextBox, debugResult.i);
                     debugResult.i++;
                 }
                 if (debugResult.commands[debugResult.i] == '.')
