@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,20 +14,19 @@ using BrainfuckInterpreter;
 
 namespace BrainFuckIDE
 {
+
     public partial class IDEForm : Form
     {
         public IDEForm()
         {
             InitializeComponent();
-            CheckNullTabs();
         }
 
         private void RunProgram_Click(object sender, EventArgs e)
         {
             output.Clear();
-            Compiler.StartCompiler();
-            RichTextBox richTextBox = new RichTextBox();
-            richTextBox = (RichTextBox)textEditor.SelectedTab.Controls[0];
+            RichTextBoxWPath richTextBox = new RichTextBoxWPath();
+            richTextBox = (RichTextBoxWPath)textEditor.SelectedTab.Controls[0];
             string sourceCode = richTextBox.Text;
             string result = Interpreter.RunInterpreter(sourceCode);
             output.Text = result;
@@ -34,16 +34,35 @@ namespace BrainFuckIDE
 
         private void Compile_Click(object sender, EventArgs e)
         {
-            Compiler.StartCompiler();
+            try
+            {
+                RichTextBoxWPath richTextBox = new RichTextBoxWPath();
+                richTextBox = (RichTextBoxWPath)textEditor.SelectedTab.Controls[0];
+                if (richTextBox.Path != "")
+                {
+                    Compiler.StartCompiler(richTextBox.Path);                    
+                }
+                else
+                {
+                    MessageBox.Show("Please, Save first, then repeat attempt");
+                    return;
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Please, Save first, then repeat attempt");
+                return;
+            }
+
         }
 
-        private TabPage CreateTab(string name = "", RichTextBox richTextBoxParam = null)
+        private TabPage CreateTab(string name = "", RichTextBoxWPath richTextBoxParam = null)
         {
             TabPage tabPage = new TabPage();
-            RichTextBox richTextBox;
+            RichTextBoxWPath richTextBox;
             if (richTextBoxParam == null)
             {
-                richTextBox = new RichTextBox();
+                richTextBox = new RichTextBoxWPath();
             }
             else
             {
@@ -68,6 +87,8 @@ namespace BrainFuckIDE
         {
             textEditor.TabPages.Add(tabPage);
             textEditor.SelectedTab = tabPage;
+            RichTextBoxWPath richTextBox = (RichTextBoxWPath) tabPage.Controls[0];
+            richTextBox.Path = tabPage.Name;
         }
 
         private void CheckNullTabs()
@@ -79,15 +100,10 @@ namespace BrainFuckIDE
             }            
         }
 
-        private void textEditor_TabIndexChanged(object sender, EventArgs e)
+        private RichTextBoxWPath GetRichTextBoxFromSelectedTab()
         {
-            CheckNullTabs();
-        }
-
-        private RichTextBox GetRichTextBoxFromSelectedTab()
-        {
-            RichTextBox richTextBox = new RichTextBox();
-            richTextBox = (RichTextBox)textEditor.SelectedTab.Controls[0];
+            RichTextBoxWPath richTextBox = new RichTextBoxWPath();
+            richTextBox = (RichTextBoxWPath)textEditor.SelectedTab.Controls[0];
             return richTextBox;
         }
 
@@ -96,12 +112,13 @@ namespace BrainFuckIDE
         {
             if (openFile.ShowDialog() == DialogResult.OK)
             {
-                RichTextBox richTextBox = new RichTextBox();
+                RichTextBoxWPath richTextBox = new RichTextBoxWPath();
                 string name;
                 richTextBox.LoadFile(name = openFile.FileName, RichTextBoxStreamType.PlainText);
                 TabPage tabPage = CreateTab(name, richTextBox);
                 tabPage.Controls.Add(richTextBox);
                 AddTabPage(tabPage);
+                richTextBox.Path = name;
             }
         }
 
@@ -111,7 +128,7 @@ namespace BrainFuckIDE
             {
                 try
                 {
-                    RichTextBox richTextBox = GetRichTextBoxFromSelectedTab();
+                    RichTextBoxWPath richTextBox = GetRichTextBoxFromSelectedTab();
                     richTextBox.SaveFile(saveFile.FileName, RichTextBoxStreamType.PlainText);
                 }
                 catch (Exception ex)
@@ -166,7 +183,6 @@ namespace BrainFuckIDE
                 Save();
             }
 
-
             private void cutButton_Click(object sender, EventArgs e)
             {
                 Cut();
@@ -182,6 +198,99 @@ namespace BrainFuckIDE
                 Paste();
             }         
         #endregion
+
+        private void textEditor_MouseClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                var tabControl = sender as TabControl;
+                var tabs = tabControl.TabPages;
+
+                if (e.Button == MouseButtons.Middle)
+                {
+                    var result = tabs.Cast<TabPage>()
+                            .Where((t, i) => tabControl.GetTabRect(i).Contains(e.Location))
+                            .First();
+                    int index = result.TabIndex;
+                    tabs.Remove(result);
+                }
+            }
+            catch (NullReferenceException)
+            {
+                return;
+            }
+        }
+
+        private void textEditor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CheckNullTabs();
+        }
+
+        private void IDEForm_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar >= 48 && e.KeyChar <= 57)
+            {
+                MessageBox.Show("Form.KeyPress: '" +
+                    e.KeyChar.ToString() + "' pressed.");
+
+                switch (e.KeyChar)
+                {
+                    case (char)49:
+                    case (char)52:
+                    case (char)55:
+                        MessageBox.Show("Form.KeyPress: '" +
+                            e.KeyChar.ToString() + "' consumed.");
+                        e.Handled = true;
+                        break;
+                }
+            }
+        }
+
+        private void IDEForm_Load(object sender, EventArgs e)
+        {
+            CheckNullTabs();
+            BringToFront();
+            Focus();
+            KeyPreview = true;
+        }
+
+        public struct result
+        {
+            private StringBuilder resultStr;
+            private int ptr;
+            private bool ended;
+            private int i;
+        }
+
+        private void Debugger(bool beginNew)
+        {
+    /*        if (beginNew)
+            {
+                IDEForm.result structResult = new IDEForm.result();
+                Interpreter bfInterpreter = new Interpreter();
+                RichTextBox richTextBox = GetRichTextBoxFromSelectedTab();
+                int i = 0;
+                int right = richTextBox.TextLength;
+                var result = new StringBuilder("");
+            }
+            while (i < right)
+            {
+                bfInterpreter.DebugProgram(richTextBox.Text);
+                i++;
+            }*/
+        }
+
+        private void IDEForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode.ToString() == "F10")
+            {                
+                Debugger(true);
+            }
+            if (e.KeyCode.ToString() == "F11")
+            {
+                
+            }
+        }
 
     }
 }

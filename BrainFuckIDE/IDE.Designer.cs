@@ -44,12 +44,17 @@
             this.textEditor = new System.Windows.Forms.TabControl();
             this.openFile = new System.Windows.Forms.OpenFileDialog();
             this.saveFile = new System.Windows.Forms.SaveFileDialog();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Index = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
             this.tools.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // CompileProgram
             // 
-            this.CompileProgram.Location = new System.Drawing.Point(271, 257);
+            this.CompileProgram.Location = new System.Drawing.Point(79, 250);
             this.CompileProgram.Name = "CompileProgram";
             this.CompileProgram.Size = new System.Drawing.Size(101, 31);
             this.CompileProgram.TabIndex = 0;
@@ -59,7 +64,7 @@
             // 
             // ExecuteCode
             // 
-            this.ExecuteCode.Location = new System.Drawing.Point(378, 257);
+            this.ExecuteCode.Location = new System.Drawing.Point(186, 250);
             this.ExecuteCode.Name = "ExecuteCode";
             this.ExecuteCode.Size = new System.Drawing.Size(118, 31);
             this.ExecuteCode.TabIndex = 1;
@@ -69,7 +74,7 @@
             // 
             // output
             // 
-            this.output.Location = new System.Drawing.Point(204, 194);
+            this.output.Location = new System.Drawing.Point(12, 187);
             this.output.Multiline = true;
             this.output.Name = "output";
             this.output.Size = new System.Drawing.Size(383, 57);
@@ -164,13 +169,15 @@
             // 
             // textEditor
             // 
-            this.textEditor.Location = new System.Drawing.Point(204, 35);
+            this.textEditor.Location = new System.Drawing.Point(12, 28);
             this.textEditor.MinimumSize = new System.Drawing.Size(383, 153);
             this.textEditor.Name = "textEditor";
             this.textEditor.SelectedIndex = 0;
             this.textEditor.Size = new System.Drawing.Size(383, 153);
             this.textEditor.TabIndex = 3;
-            this.textEditor.TabIndexChanged += new System.EventHandler(this.textEditor_TabIndexChanged);
+            this.textEditor.SelectedIndexChanged += new System.EventHandler(this.textEditor_SelectedIndexChanged);
+            this.textEditor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IDEForm_KeyPress);
+            this.textEditor.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textEditor_MouseClick);
             // 
             // openFile
             // 
@@ -182,11 +189,47 @@
             this.saveFile.FileName = "saveFile";
             this.saveFile.Filter = "Text Files|*.txt|Brainfuck Files|*.brf";
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Index,
+            this.Value});
+            this.dataGridView1.Location = new System.Drawing.Point(401, 31);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(212, 213);
+            this.dataGridView1.TabIndex = 5;
+            // 
+            // Index
+            // 
+            this.Index.Frozen = true;
+            this.Index.HeaderText = "Index";
+            this.Index.Name = "Index";
+            this.Index.ReadOnly = true;
+            this.Index.Width = 70;
+            // 
+            // Value
+            // 
+            this.Value.Frozen = true;
+            this.Value.HeaderText = "Value";
+            this.Value.Name = "Value";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(398, 250);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(76, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "F10 - to debug";
+            // 
             // IDEForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(718, 296);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.tools);
             this.Controls.Add(this.textEditor);
             this.Controls.Add(this.output);
@@ -195,8 +238,12 @@
             this.MinimumSize = new System.Drawing.Size(734, 334);
             this.Name = "IDEForm";
             this.Text = "BrainfuckIDE";
+            this.Load += new System.EventHandler(this.IDEForm_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.IDEForm_KeyDown);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IDEForm_KeyPress);
             this.tools.ResumeLayout(false);
             this.tools.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -219,6 +266,10 @@
         private System.Windows.Forms.TabControl textEditor;
         private System.Windows.Forms.OpenFileDialog openFile;
         private System.Windows.Forms.SaveFileDialog saveFile;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Index;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Value;
+        private System.Windows.Forms.Label label1;
     }
 }
 

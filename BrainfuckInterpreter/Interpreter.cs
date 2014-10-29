@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -15,29 +16,17 @@ namespace BrainfuckInterpreter
         private int ptr { get; set; }
         private bool echo { get; set; }
  
-        private Interpreter()
+        public Interpreter()
         {
             ptr = 0;
             Reset();
-        }
- 
-        private static void PrintHelp()
-        {
-            Console.WriteLine("BrainFuck Interpreter " + VER);
-            Console.WriteLine("https://helloacm.com");
-            Console.WriteLine("Parameter: -h: Print Help");
-            Console.WriteLine("Parameter: -e: Enable Echo Input Text");
-            Console.WriteLine("Parameter: -d: Disable Echo Input Text");
-            Console.WriteLine("Parameter: -p: Enable Keyboard Input");
-            Console.WriteLine("Parameter: -v: Print Version");
-            Console.WriteLine("Parameter: FileName");
         }
  
         private void Reset()
         {
             Array.Clear(buf, 0, buf.Length);
         }
- 
+
         private string Interpret(string s)
         {
             int i = 0;
@@ -49,19 +38,19 @@ namespace BrainfuckInterpreter
                 {
                     case '>':
                         {
-                            this.ptr++;
-                            if (this.ptr >= BUFSIZE)
+                            ptr++;
+                            if (ptr >= BUFSIZE)
                             {
-                                this.ptr = 0;
+                                ptr = 0;
                             }
                             break;
                         }
                     case '<':
                         {
-                            this.ptr--;
-                            if (this.ptr < 0)
+                            ptr--;
+                            if (ptr < 0)
                             {
-                                this.ptr = BUFSIZE - 1;
+                                ptr = BUFSIZE - 1;
                             }
                             break;
                         }
@@ -72,17 +61,17 @@ namespace BrainfuckInterpreter
                         }
                     case '+':
                         {
-                            this.buf[this.ptr]++;
+                            buf[ptr]++;
                             break;
                         }
                     case '-':
                         {
-                            this.buf[this.ptr]--;
+                            buf[ptr]--;
                             break;
                         }
                     case '[':
                         {
-                            if (this.buf[this.ptr] == 0)
+                            if (buf[ptr] == 0)
                             {
                                 int loop = 1;
                                 while (loop > 0)
@@ -125,8 +114,8 @@ namespace BrainfuckInterpreter
                     case ',':
                         {
                             // read a key
-                            ConsoleKeyInfo key = Console.ReadKey(this.echo);
-                            this.buf[this.ptr] = (int)key.KeyChar;
+                            ConsoleKeyInfo key = Console.ReadKey(echo);
+                            buf[ptr] = key.KeyChar;
                             break;
                         }
                 }
@@ -140,5 +129,6 @@ namespace BrainfuckInterpreter
             var bf = new Interpreter();
             return bf.Interpret(sourceCode);
         }
+
     }
 }
