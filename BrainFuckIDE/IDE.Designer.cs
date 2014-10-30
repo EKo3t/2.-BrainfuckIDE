@@ -198,6 +198,7 @@
             this.DebugCells.Name = "DebugCells";
             this.DebugCells.Size = new System.Drawing.Size(212, 213);
             this.DebugCells.TabIndex = 5;
+            this.DebugCells.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.DebugCells_CellBeginEdit);
             this.DebugCells.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DebugCells_CellEndEdit);
             // 
             // Index

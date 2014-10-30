@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace BrainFuckIDE
 {
-    public partial class IDEForm
+    public partial class IDEForm : Form
     {
         void Open()
         {

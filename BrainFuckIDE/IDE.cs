@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.OleDb;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
@@ -151,13 +152,6 @@ namespace BrainFuckIDE
         public Interpreter bfInterpreter = new Interpreter();
         public result debugResult = new result();
 
-        private void SelectCharacter(RichTextBoxWPath rtBoxWPath, int index, Color color)
-        {
-            rtBoxWPath.SelectionColor = color;
-            rtBoxWPath.SelectionStart = index;
-            rtBoxWPath.SelectionLength = 1;
-        }
-
         private void Debugger(bool ended)
         {
             if (!ended)
@@ -170,10 +164,7 @@ namespace BrainFuckIDE
                 if (debugResult.commands == "")
                     debugResult.commands = richTextBox.Text;
                 int right = richTextBox.TextLength;
-                if (debugResult.i - 1 >= 0)
-                    SelectCharacter(richTextBox, debugResult.i-1, Color.Black);
 
-                SelectCharacter(richTextBox, debugResult.i, Color.Red);
                 if (debugResult.i < right)
                 {
                     debugResult = bfInterpreter.DebugProgram(debugResult);
@@ -212,12 +203,26 @@ namespace BrainFuckIDE
             return input;
         }
 
+        private int? oldvalue = null;
+
         private void DebugCells_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewCell cell = (DataGridViewCell) sender;
+            DataGridView dgv = (DataGridView) sender;
+            DataGridViewCell cell = dgv.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            int numb;
+            bool parse = Int32.TryParse(cell.Value.ToString(), out numb);
+            if (!parse)
+            {
+                MessageBox.Show("Please enter not large int");
+                dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = oldvalue;
+            }
 
         }
 
-
+        private void DebugCells_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            DataGridView dgv = (DataGridView) sender;
+            oldvalue = (int?) dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+        }
     }
 }
