@@ -26,7 +26,7 @@ namespace BrainfuckInterpreter
             Array.Clear(buf, 0, buf.Length);
         }
 
-        private string Interpret(string s)
+        private string Interpret(string s, InputData inputData)
         {
             int i = 0;
             int right = s.Length;
@@ -111,20 +111,23 @@ namespace BrainfuckInterpreter
                             break;
                         }
                     case ',':
+                    {
+                        String input;
+                        do
                         {
-                            
-                            // read a key
-                            ConsoleKeyInfo key = Console.ReadKey(echo);
-                            buf[ptr] = key.KeyChar;
-                            break;
-                        }
+                            input = inputData.callInputBox("Enter char: ");
+                        } while (input.Length != 1);
+
+                        buf[ptr] = input[0];
+                        break;
+                    }
                 }
                 i++; 
             }
             return result.ToString();
         }
 
-        public result DebugProgram(result debugResult)
+        public result DebugProgram(result debugResult, InputData inputData)
         {
             switch (debugResult.commands[debugResult.i])
             {
@@ -203,20 +206,23 @@ namespace BrainfuckInterpreter
                 }
                 case ',':
                 {
+                    String input;
+                    do
+                    {
+                        input = inputData.callInputBox("Enter char: ");
+                    } while (input.Length != 1);
 
-                    // read a key
-                    ConsoleKeyInfo key = Console.ReadKey(echo);
-                    buf[ptr] = key.KeyChar;
+                    buf[ptr] = input[0];
                     break;
                 }
             }
             return debugResult;
         }
 
-        public static string RunInterpreter(string sourceCode)
+        public static string RunInterpreter(string sourceCode, InputData inputData)
         {
             var bf = new Interpreter();
-            return bf.Interpret(sourceCode);
+            return bf.Interpret(sourceCode, inputData);
         }
 
     }
