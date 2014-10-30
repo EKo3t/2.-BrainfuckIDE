@@ -32,6 +32,7 @@ namespace BrainFuckIDE
                     RichTextBoxWPath richTextBox = GetRichTextBoxFromSelectedTab();
                     string name;
                     richTextBox.SaveFile(name = saveFile.FileName, RichTextBoxStreamType.PlainText);
+                    richTextBox.Path = name;
                     name = name.Substring(name.LastIndexOf("\\") + 1);
                     textEditor.SelectedTab.Text = name;
                 }

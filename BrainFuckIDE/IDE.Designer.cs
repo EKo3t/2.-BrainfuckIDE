@@ -49,7 +49,7 @@
             this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.DebugButton = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.StopDebugButton = new System.Windows.Forms.Button();
             this.tools.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DebugCells)).BeginInit();
             this.SuspendLayout();
@@ -222,9 +222,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(398, 250);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(76, 13);
+            this.label1.Size = new System.Drawing.Size(176, 13);
             this.label1.TabIndex = 6;
-            this.label1.Text = "F10 - to debug";
+            this.label1.Text = "F10 - to debug | F11 - to stop debug";
             // 
             // DebugButton
             // 
@@ -236,22 +236,22 @@
             this.DebugButton.UseVisualStyleBackColor = true;
             this.DebugButton.Click += new System.EventHandler(this.DebugButton_Click);
             // 
-            // button2
+            // StopDebugButton
             // 
-            this.button2.Location = new System.Drawing.Point(619, 60);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "StopDebug";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.StopDebugButton.Location = new System.Drawing.Point(619, 60);
+            this.StopDebugButton.Name = "StopDebugButton";
+            this.StopDebugButton.Size = new System.Drawing.Size(75, 23);
+            this.StopDebugButton.TabIndex = 8;
+            this.StopDebugButton.Text = "StopDebug";
+            this.StopDebugButton.UseVisualStyleBackColor = true;
+            this.StopDebugButton.Click += new System.EventHandler(this.button2_Click);
             // 
             // IDEForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(732, 296);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.StopDebugButton);
             this.Controls.Add(this.DebugButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.DebugCells);
@@ -264,7 +264,7 @@
             this.Name = "IDEForm";
             this.Text = "BrainfuckIDE";
             this.Load += new System.EventHandler(this.IDEForm_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.IDEForm_KeyDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.IDEForm_KeyUp);
             this.tools.ResumeLayout(false);
             this.tools.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DebugCells)).EndInit();
@@ -295,7 +295,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Value;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button DebugButton;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button StopDebugButton;
     }
 }
 

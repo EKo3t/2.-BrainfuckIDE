@@ -149,9 +149,16 @@ namespace BrainFuckIDE
             }
         }
 
-        public Interpreter bfInterpreter = new Interpreter();
-        public result debugResult = new result();
+        public readonly Interpreter BfInterpreter = new Interpreter();
+        public result debugResult;
         private const string bfCommands = "><+-.,[]";
+
+        private void SelectCharacter(RichTextBoxWPath rtb, int index)
+        {
+            rtb.SelectionStart = index;
+            rtb.SelectionLength = 1;
+            rtb.Select();
+        }
 
         private void Debugger(bool ended)
         {
@@ -159,7 +166,7 @@ namespace BrainFuckIDE
             {
                 for (int ind = 0; ind < DebugCells.RowCount; ind++)
                 {
-                    DebugCells.Rows[ind].Cells[1].Value = bfInterpreter.buf[ind];
+                    DebugCells.Rows[ind].Cells[1].Value = BfInterpreter.buf[ind];
                 }
                 RichTextBoxWPath richTextBox = GetRichTextBoxFromSelectedTab();
                 if (debugResult.commands == "")
@@ -172,33 +179,19 @@ namespace BrainFuckIDE
 
                 if (debugResult.i < right)
                 {
-                    debugResult = bfInterpreter.DebugProgram(debugResult);
+                    SelectCharacter(richTextBox, debugResult.i);
+                    debugResult = BfInterpreter.DebugProgram(debugResult);
                     debugResult.i++;
                 }
                 else
                     return;
-                if (debugResult.commands[debugResult.i] == '.')
-                {
-                    output.Clear();
-                    output.Text = debugResult.resultStr.ToString();
-                }
+                output.Text = debugResult.resultStr.ToString();     
             }
             if (ended)
             {
+                output.Clear();
                 debugResult.ClearResult();
-                bfInterpreter.Reset();
-            }
-        }
-
-        private void IDEForm_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode.ToString() == "F10")
-            {                
-                Debugger(false);
-            }
-            if (e.KeyCode.ToString() == "F11")
-            {
-                Debugger(true);
+                BfInterpreter.Reset();
             }
         }
 
@@ -240,6 +233,18 @@ namespace BrainFuckIDE
         private void button2_Click(object sender, EventArgs e)
         {
             Debugger(true);
+        }
+
+        private void IDEForm_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode.ToString() == "F10")
+            {
+                Debugger(false);
+            }
+            if (e.KeyCode.ToString() == "F11")
+            {
+                Debugger(true);
+            }
         }
     }
 }
