@@ -23,13 +23,21 @@ namespace BrainFuckIDE
             InitializeComponent();
         }
 
+        private String RunInputBox(String prompt)
+        {
+            string input = Microsoft.VisualBasic.Interaction.InputBox("Title", prompt, "Default", 0, 0);
+            return input;
+        }
+
         private void RunProgram_Click(object sender, EventArgs e)
         {
             output.Clear();
             RichTextBoxWPath richTextBox = new RichTextBoxWPath();
             richTextBox = (RichTextBoxWPath)textEditor.SelectedTab.Controls[0];
             string sourceCode = richTextBox.Text;
-            string result = Interpreter.RunInterpreter(sourceCode);
+            InputData inputData = new InputData();
+            inputData.callInputBox = RunInputBox;
+            string result = Interpreter.RunInterpreter(sourceCode, inputData);
             output.Text = result;
         }
 
@@ -179,8 +187,12 @@ namespace BrainFuckIDE
 
                 if (debugResult.i < right)
                 {
-                    SelectCharacter(richTextBox, debugResult.i);
-                    debugResult = BfInterpreter.DebugProgram(debugResult);
+		    SelectCharacter(richTextBox, debugResult.i);
+
+                    InputData inputData = new InputData();
+                    inputData.callInputBox = RunInputBox;
+
+                    debugResult = bfInterpreter.DebugProgram(debugResult, inputData);
                     debugResult.i++;
                 }
                 else
