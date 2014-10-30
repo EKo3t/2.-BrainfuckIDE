@@ -9,6 +9,6 @@ namespace BrainFuckIDE
 {
     class InputDialogForm : Form
     {
-        
+                
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BrainFuckIDE
+namespace BrainfuckInterpreter
 {
     public struct result
     {

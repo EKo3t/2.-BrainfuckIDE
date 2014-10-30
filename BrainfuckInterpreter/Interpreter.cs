@@ -5,14 +5,12 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BrainFuckIDE;
 
 namespace BrainfuckInterpreter
 {
     public class Interpreter
     {
-        private static string VER = "0.0.0.1";
-        private static readonly int BUFSIZE = 65535;
+        private const int BUFSIZE = 65535;
         public int[] buf = new int[BUFSIZE];
         private int ptr { get; set; }
         private bool echo { get; set; }
@@ -23,7 +21,7 @@ namespace BrainfuckInterpreter
             Reset();
         }
  
-        private void Reset()
+        public void Reset()
         {
             Array.Clear(buf, 0, buf.Length);
         }

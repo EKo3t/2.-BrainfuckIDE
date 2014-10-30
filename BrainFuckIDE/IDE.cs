@@ -151,6 +151,7 @@ namespace BrainFuckIDE
 
         public Interpreter bfInterpreter = new Interpreter();
         public result debugResult = new result();
+        private const string bfCommands = "><+-.,[]";
 
         private void Debugger(bool ended)
         {
@@ -163,13 +164,19 @@ namespace BrainFuckIDE
                 RichTextBoxWPath richTextBox = GetRichTextBoxFromSelectedTab();
                 if (debugResult.commands == "")
                     debugResult.commands = richTextBox.Text;
+                if (debugResult.commands.Length == 0)
+                    return;
                 int right = richTextBox.TextLength;
+                while ((debugResult.i < right)&&(bfCommands.IndexOf(debugResult.commands[debugResult.i]) == -1))
+                    debugResult.i++;
 
                 if (debugResult.i < right)
                 {
                     debugResult = bfInterpreter.DebugProgram(debugResult);
                     debugResult.i++;
                 }
+                else
+                    return;
                 if (debugResult.commands[debugResult.i] == '.')
                 {
                     output.Clear();
@@ -179,7 +186,7 @@ namespace BrainFuckIDE
             if (ended)
             {
                 debugResult.ClearResult();
-                Interpreter bfInterpreter = new Interpreter();
+                bfInterpreter.Reset();
             }
         }
 
@@ -223,6 +230,16 @@ namespace BrainFuckIDE
         {
             DataGridView dgv = (DataGridView) sender;
             oldvalue = (int?) dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+        }
+
+        private void DebugButton_Click(object sender, EventArgs e)
+        {
+            Debugger(false);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Debugger(true);
         }
     }
 }
