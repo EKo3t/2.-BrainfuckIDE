@@ -9,3 +9,42 @@ F:\Projects\C#\Itransition\2. Brainfuck IDE\BrainfuckIDE\BrainFuckIDE\obj\Debug\
 F:\Projects\C#\Itransition\2. Brainfuck IDE\BrainfuckIDE\BrainFuckIDE\obj\Debug\BrainFuckIDE.csproj.GenerateResource.Cache
 F:\Projects\C#\Itransition\2. Brainfuck IDE\BrainfuckIDE\BrainFuckIDE\obj\Debug\BrainFuckIDE.exe
 F:\Projects\C#\Itransition\2. Brainfuck IDE\BrainfuckIDE\BrainFuckIDE\obj\Debug\BrainFuckIDE.pdb
+Z:\GitHub_Rep\BrainfuckIDE\BrainFuckIDE\bin\Debug\BrainFuckIDE.exe.config
+Z:\GitHub_Rep\BrainfuckIDE\BrainFuckIDE\obj\Debug\BrainFuckIDE.exe
+Z:\GitHub_Rep\BrainfuckIDE\BrainFuckIDE\obj\Debug\BrainFuckIDE.pdb
+Z:\GitHub_Rep\BrainfuckIDE\BrainFuckIDE\obj\Debug\BrainFuckIDE.csprojResolveAssemblyReference.cache
+Z:\GitHub_Rep\BrainfuckIDE\BrainFuckIDE\obj\Debug\BrainFuckIDE.IDEForm.resources
+Z:\GitHub_Rep\BrainfuckIDE\BrainFuckIDE\obj\Debug\BrainFuckIDE.Properties.Resources.resources
+Z:\GitHub_Rep\BrainfuckIDE\BrainFuckIDE\obj\Debug\BrainFuckIDE.csproj.GenerateResource.Cache
+Z:\GitHub_Rep\BrainfuckIDE\BrainFuckIDE\bin\Debug\BrainFuckIDE.exe
+Z:\GitHub_Rep\BrainfuckIDE\BrainFuckIDE\bin\Debug\BrainFuckIDE.pdb
+Z:\GitHub_Rep\BrainfuckIDE\BrainFuckIDE\bin\Debug\BrainfuckCompiler.dll
+Z:\GitHub_Rep\BrainfuckIDE\BrainFuckIDE\bin\Debug\BrainfuckInterpreter.dll
+Z:\GitHub_Rep\BrainfuckIDE\BrainFuckIDE\bin\Debug\BrainfuckCompiler.pdb
+Z:\GitHub_Rep\BrainfuckIDE\BrainFuckIDE\bin\Debug\BrainfuckInterpreter.pdb
+F:\Projects\C#\Itransition\BrainfuckIDETemp\BrainFuckIDE\bin\Debug\BrainFuckIDE.exe.config
+F:\Projects\C#\Itransition\BrainfuckIDETemp\BrainFuckIDE\obj\Debug\BrainFuckIDE.exe
+F:\Projects\C#\Itransition\BrainfuckIDETemp\BrainFuckIDE\obj\Debug\BrainFuckIDE.pdb
+F:\Projects\C#\Itransition\BrainfuckIDETemp\BrainFuckIDE\bin\Debug\BrainFuckIDE.exe
+F:\Projects\C#\Itransition\BrainfuckIDETemp\BrainFuckIDE\bin\Debug\BrainFuckIDE.pdb
+F:\Projects\C#\Itransition\BrainfuckIDETemp\BrainFuckIDE\bin\Debug\BrainfuckCompiler.dll
+F:\Projects\C#\Itransition\BrainfuckIDETemp\BrainFuckIDE\bin\Debug\BrainfuckInterpreter.dll
+F:\Projects\C#\Itransition\BrainfuckIDETemp\BrainFuckIDE\bin\Debug\BrainfuckCompiler.pdb
+F:\Projects\C#\Itransition\BrainfuckIDETemp\BrainFuckIDE\bin\Debug\BrainfuckInterpreter.pdb
+F:\Projects\C#\Itransition\BrainfuckIDETemp\BrainFuckIDE\obj\Debug\BrainFuckIDE.IDEForm.resources
+F:\Projects\C#\Itransition\BrainfuckIDETemp\BrainFuckIDE\obj\Debug\BrainFuckIDE.Properties.Resources.resources
+F:\Projects\C#\Itransition\BrainfuckIDETemp\BrainFuckIDE\obj\Debug\BrainFuckIDE.csproj.GenerateResource.Cache
+F:\Projects\C#\Itransition\BrainfuckIDETemp\BrainFuckIDE\obj\Debug\BrainFuckIDE.csprojResolveAssemblyReference.cache
+F:\Projects\C#\Itransition\2. BrainfuckIDETemp (Patch1)\BrainFuckIDE\bin\Debug\BrainFuckIDE.exe.config
+F:\Projects\C#\Itransition\2. BrainfuckIDETemp (Patch1)\BrainFuckIDE\obj\Debug\BrainFuckIDE.exe
+F:\Projects\C#\Itransition\2. BrainfuckIDETemp (Patch1)\BrainFuckIDE\obj\Debug\BrainFuckIDE.pdb
+F:\Projects\C#\Itransition\2. BrainfuckIDETemp (Patch1)\BrainFuckIDE\bin\Debug\BrainFuckIDE.exe
+F:\Projects\C#\Itransition\2. BrainfuckIDETemp (Patch1)\BrainFuckIDE\bin\Debug\BrainFuckIDE.pdb
+F:\Projects\C#\Itransition\2. BrainfuckIDETemp (Patch1)\BrainFuckIDE\bin\Debug\BrainfuckCompiler.dll
+F:\Projects\C#\Itransition\2. BrainfuckIDETemp (Patch1)\BrainFuckIDE\bin\Debug\BrainfuckInterpreter.dll
+F:\Projects\C#\Itransition\2. BrainfuckIDETemp (Patch1)\BrainFuckIDE\bin\Debug\BrainfuckCompiler.pdb
+F:\Projects\C#\Itransition\2. BrainfuckIDETemp (Patch1)\BrainFuckIDE\bin\Debug\BrainfuckInterpreter.pdb
+F:\Projects\C#\Itransition\2. BrainfuckIDETemp (Patch1)\BrainFuckIDE\obj\Debug\BrainFuckIDE.csprojResolveAssemblyReference.cache
+F:\Projects\C#\Itransition\2. BrainfuckIDETemp (Patch1)\BrainFuckIDE\obj\Debug\BrainFuckIDE.IDEForm.resources
+F:\Projects\C#\Itransition\2. BrainfuckIDETemp (Patch1)\BrainFuckIDE\obj\Debug\BrainFuckIDE.Properties.Resources.resources
+F:\Projects\C#\Itransition\2. BrainfuckIDETemp (Patch1)\BrainFuckIDE\obj\Debug\BrainFuckIDE.csproj.GenerateResource.Cache

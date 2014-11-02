@@ -2,3 +2,17 @@ F:\Projects\C#\Itransition\2. Brainfuck IDE\BrainfuckIDE\BrainfuckCompiler\bin\D
 F:\Projects\C#\Itransition\2. Brainfuck IDE\BrainfuckIDE\BrainfuckCompiler\bin\Debug\BrainfuckCompiler.pdb
 F:\Projects\C#\Itransition\2. Brainfuck IDE\BrainfuckIDE\BrainfuckCompiler\obj\Debug\BrainfuckCompiler.dll
 F:\Projects\C#\Itransition\2. Brainfuck IDE\BrainfuckIDE\BrainfuckCompiler\obj\Debug\BrainfuckCompiler.pdb
+Z:\GitHub_Rep\BrainfuckIDE\BrainfuckCompiler\bin\Debug\BrainfuckCompiler.dll
+Z:\GitHub_Rep\BrainfuckIDE\BrainfuckCompiler\bin\Debug\BrainfuckCompiler.pdb
+Z:\GitHub_Rep\BrainfuckIDE\BrainfuckCompiler\obj\Debug\BrainfuckCompiler.csprojResolveAssemblyReference.cache
+Z:\GitHub_Rep\BrainfuckIDE\BrainfuckCompiler\obj\Debug\BrainfuckCompiler.dll
+Z:\GitHub_Rep\BrainfuckIDE\BrainfuckCompiler\obj\Debug\BrainfuckCompiler.pdb
+F:\Projects\C#\Itransition\BrainfuckIDETemp\BrainfuckCompiler\bin\Debug\BrainfuckCompiler.dll
+F:\Projects\C#\Itransition\BrainfuckIDETemp\BrainfuckCompiler\bin\Debug\BrainfuckCompiler.pdb
+F:\Projects\C#\Itransition\BrainfuckIDETemp\BrainfuckCompiler\obj\Debug\BrainfuckCompiler.dll
+F:\Projects\C#\Itransition\BrainfuckIDETemp\BrainfuckCompiler\obj\Debug\BrainfuckCompiler.pdb
+F:\Projects\C#\Itransition\2. BrainfuckIDETemp (Patch1)\BrainfuckCompiler\bin\Debug\BrainfuckCompiler.dll
+F:\Projects\C#\Itransition\2. BrainfuckIDETemp (Patch1)\BrainfuckCompiler\bin\Debug\BrainfuckCompiler.pdb
+F:\Projects\C#\Itransition\2. BrainfuckIDETemp (Patch1)\BrainfuckCompiler\obj\Debug\BrainfuckCompiler.csprojResolveAssemblyReference.cache
+F:\Projects\C#\Itransition\2. BrainfuckIDETemp (Patch1)\BrainfuckCompiler\obj\Debug\BrainfuckCompiler.dll
+F:\Projects\C#\Itransition\2. BrainfuckIDETemp (Patch1)\BrainfuckCompiler\obj\Debug\BrainfuckCompiler.pdb

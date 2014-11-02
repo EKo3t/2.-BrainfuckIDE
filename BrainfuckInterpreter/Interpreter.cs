@@ -212,7 +212,7 @@ namespace BrainfuckInterpreter
                         input = inputData.callInputBox("Enter char: ");
                     } while (input.Length != 1);
 
-                    buf[ptr] = input[0];
+                    buf[debugResult.ptr] = input[0];
                     break;
                 }
             }

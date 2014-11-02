@@ -1,10 +1,12 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Reflection;
 using System.Reflection.Emit;
 using BF.Tokens;
+using Microsoft.CSharp;
 
 namespace BF
 {
@@ -28,7 +30,7 @@ namespace BF
             this.tokens = tokens;
         }
 
-        public void Build() 
+        public void Build()
         {
             var name = new AssemblyName(assemblyName);
             var domain = AppDomain.CurrentDomain;
@@ -41,18 +43,18 @@ namespace BF
 
             var mainMethod = programClass.DefineMethod(MainMethodName,
                 MethodAttributes.Static | MethodAttributes.Public,
-                null, new[] { typeof(string[]) });
+                null, new[] {typeof (string[])});
 
-            var tape = programClass.DefineField(TapeFieldName, typeof(int[]),
+            var tape = programClass.DefineField(TapeFieldName, typeof (int[]),
                 FieldAttributes.Private | FieldAttributes.Static);
 
-            var ptr = programClass.DefineField(PointerFieldName, typeof(int),
+            var ptr = programClass.DefineField(PointerFieldName, typeof (int),
                 FieldAttributes.Private | FieldAttributes.Static);
 
             var body = mainMethod.GetILGenerator();
-            
+
             body.Emit(OpCodes.Ldc_I4, tapeSize);
-            body.Emit(OpCodes.Newarr, typeof(int));
+            body.Emit(OpCodes.Newarr, typeof (int));
             body.Emit(OpCodes.Stsfld, tape);
 
             tokens.ToList().ForEach(t => t.EmitIL(body, tape, ptr));

@@ -50,13 +50,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.DebugButton = new System.Windows.Forms.Button();
             this.StopDebugButton = new System.Windows.Forms.Button();
+            this.ExitButton = new System.Windows.Forms.Button();
             this.tools.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DebugCells)).BeginInit();
             this.SuspendLayout();
             // 
             // CompileProgram
             // 
-            this.CompileProgram.Location = new System.Drawing.Point(79, 250);
+            this.CompileProgram.Location = new System.Drawing.Point(51, 250);
             this.CompileProgram.Name = "CompileProgram";
             this.CompileProgram.Size = new System.Drawing.Size(101, 31);
             this.CompileProgram.TabIndex = 0;
@@ -66,7 +67,7 @@
             // 
             // ExecuteCode
             // 
-            this.ExecuteCode.Location = new System.Drawing.Point(186, 250);
+            this.ExecuteCode.Location = new System.Drawing.Point(158, 250);
             this.ExecuteCode.Name = "ExecuteCode";
             this.ExecuteCode.Size = new System.Drawing.Size(118, 31);
             this.ExecuteCode.TabIndex = 1;
@@ -246,11 +247,22 @@
             this.StopDebugButton.UseVisualStyleBackColor = true;
             this.StopDebugButton.Click += new System.EventHandler(this.button2_Click);
             // 
+            // ExitButton
+            // 
+            this.ExitButton.Location = new System.Drawing.Point(283, 250);
+            this.ExitButton.Name = "ExitButton";
+            this.ExitButton.Size = new System.Drawing.Size(109, 30);
+            this.ExitButton.TabIndex = 9;
+            this.ExitButton.Text = "Exit";
+            this.ExitButton.UseVisualStyleBackColor = true;
+            this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
+            // 
             // IDEForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(732, 296);
+            this.Controls.Add(this.ExitButton);
             this.Controls.Add(this.StopDebugButton);
             this.Controls.Add(this.DebugButton);
             this.Controls.Add(this.label1);
@@ -296,6 +308,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button DebugButton;
         private System.Windows.Forms.Button StopDebugButton;
+        private System.Windows.Forms.Button ExitButton;
     }
 }
 

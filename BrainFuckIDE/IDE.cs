@@ -153,7 +153,7 @@ namespace BrainFuckIDE
             DebugCells.RowCount = 30000;
             for (int ind = 0; ind < DebugCells.RowCount; ind++)
             {
-                DebugCells.Rows[ind].Cells[0].Value = (int)ind + 1;
+                DebugCells.Rows[ind].Cells[0].Value = ind;
             }
         }
 
@@ -187,12 +187,12 @@ namespace BrainFuckIDE
 
                 if (debugResult.i < right)
                 {
-		    SelectCharacter(richTextBox, debugResult.i);
+		            SelectCharacter(richTextBox, debugResult.i);
 
                     InputData inputData = new InputData();
                     inputData.callInputBox = RunInputBox;
 
-                    debugResult = bfInterpreter.DebugProgram(debugResult, inputData);
+                    debugResult = BfInterpreter.DebugProgram(debugResult, inputData);
                     debugResult.i++;
                 }
                 else
@@ -257,6 +257,11 @@ namespace BrainFuckIDE
             {
                 Debugger(true);
             }
+        }
+
+        private void ExitButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

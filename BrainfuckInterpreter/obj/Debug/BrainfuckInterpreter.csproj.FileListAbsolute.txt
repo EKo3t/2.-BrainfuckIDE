@@ -1,0 +1,9 @@
+Z:\GitHub_Rep\BrainfuckIDE\BrainfuckInterpreter\bin\Debug\BrainfuckInterpreter.dll
+Z:\GitHub_Rep\BrainfuckIDE\BrainfuckInterpreter\bin\Debug\BrainfuckInterpreter.pdb
+Z:\GitHub_Rep\BrainfuckIDE\BrainfuckInterpreter\obj\Debug\BrainfuckInterpreter.csprojResolveAssemblyReference.cache
+Z:\GitHub_Rep\BrainfuckIDE\BrainfuckInterpreter\obj\Debug\BrainfuckInterpreter.dll
+Z:\GitHub_Rep\BrainfuckIDE\BrainfuckInterpreter\obj\Debug\BrainfuckInterpreter.pdb
+F:\Projects\C#\Itransition\BrainfuckIDETemp\BrainfuckInterpreter\bin\Debug\BrainfuckInterpreter.dll
+F:\Projects\C#\Itransition\BrainfuckIDETemp\BrainfuckInterpreter\bin\Debug\BrainfuckInterpreter.pdb
+F:\Projects\C#\Itransition\BrainfuckIDETemp\BrainfuckInterpreter\obj\Debug\BrainfuckInterpreter.dll
+F:\Projects\C#\Itransition\BrainfuckIDETemp\BrainfuckInterpreter\obj\Debug\BrainfuckInterpreter.pdb
